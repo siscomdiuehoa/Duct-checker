@@ -32,7 +32,7 @@ jobs:
       - run: chmod +x android/gradlew && cd android && ./gradlew assembleDebug assembleRelease bundleRelease --no-daemon
       - uses: actions/upload-artifact@v4
         with:
-          name: DuctCheckerPro-5.02-Android
+          name: DuctCheckerPro-5.3.0-Android
           path: |
             android/app/build/outputs/apk/debug/*.apk
             android/app/build/outputs/apk/release/*.apk
@@ -53,5 +53,5 @@ jobs:
       - run: bash scripts/build-ios.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: DuctCheckerPro-5.02-iOS-unsigned
+          name: DuctCheckerPro-5.3.0-iOS-unsigned
           path: artifacts/ios/*.zip

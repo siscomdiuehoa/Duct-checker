@@ -1,4 +1,4 @@
-# Duct Checker Pro · 5.02
+# Duct Checker Pro · 5.3.0
 
 Siscom Technical Trading Joint Stock Company — https://siscom.vn
 
@@ -9,7 +9,7 @@ The current release candidate shares the approved Neumorphic UI and calculation 
 
 ## Source layout
 
-- `web/`: canonical UI, logos, translations, calculation engine and 24 tests. Make product updates here.
+- `web/`: canonical UI, logos, translations, calculation engine and numerical/unit regression tests. Make product updates here.
 - `android/`: native Android host (API 36 target, Android 7+ minimum).
 - `ios/`: native iOS host using Swift Package Manager (iOS 15+).
 - `native-swiftui/`: preserved earlier SwiftUI prototype. It predates the current UI/engine updates and is **not the release target**.
@@ -32,8 +32,8 @@ Open the repository Actions tab → latest successful **Build mobile review pack
 
 ## Store update gates
 
-Default Android versionCode **50200 is provisional**. Before an update, use a code larger than every previously uploaded code, e.g. `./gradlew bundleRelease -PreleaseVersionCode=YOUR_NEXT_CODE`.
-Sign with the existing upload key using `ANDROID_KEYSTORE_PATH`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`. Never commit keys or passwords. If the old upload key is lost, request an upload-key reset in Play Console (when enrolled in Play App Signing).
+Owner-confirmed Play version: **5.2.0 / 50200**. This update is **5.3.0 / 50300**; application ID remains unchanged.
+The old upload key is lost. The owner has created a replacement upload key (alias `ductchecker-upload`) and submitted a Google Play reset request; approval is pending. Do not sign or upload this update until the owner confirms approval. After approval, sign locally with the replacement upload key using `ANDROID_KEYSTORE_PATH`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD`. Never commit keys or passwords. If the old upload key is lost, request an upload-key reset in Play Console (when enrolled in Play App Signing).
 
 For iOS, set the owner's Apple Developer team, register the bundle ID, archive with signing in Xcode, then distribute to App Store Connect/TestFlight. No Apple team/certificates are embedded. Account/store forms and real-device acceptance remain owner tasks. See `docs/STORE-RELEASE.md`.
 

@@ -7,8 +7,8 @@ android {
         applicationId "vn.ductchecker.pro"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode = (project.findProperty("releaseVersionCode") ?: "50200").toInteger()
-        versionName "5.02"
+        versionCode = (project.findProperty("releaseVersionCode") ?: "50300").toInteger()
+        versionName "5.3.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.

@@ -27,3 +27,27 @@ test('outlet quantity, grid boundaries and invalid values',()=>{const single=E.o
 test('configured air matches recovered dry density and viscosity anchors',()=>{const a=E.airProperties(101.325,20,0);near(a.rho,353.18295/293.15);near(a.mu,.0000182876);near(E.airProperties(50.6625,20,0).rho,a.rho/2);assert.ok(E.airProperties(101.325,20,100).rho<a.rho);assert.ok(E.airProperties(101.325,-20,0).rho>a.rho);for(const args of [[0,20,0],[101.325,-41,0],[101.325,101,0],[101.325,20,101],[.01,100,100]])assert.throws(()=>E.airProperties(...args));});
 test('air settings propagate into pressure and diameter selection',()=>{const cold=E.airProperties(101.325,0,0),hot=E.airProperties(101.325,60,0);assert.ok(E.pressure(1,.5,false,.00018,cold).loss>E.pressure(1,.5,false,.00018,hot).loss);assert.ok(E.designSelection(2,10,1,4,.00018,'legacy',cold)[0].w>E.designSelection(2,10,1,4,.00018,'legacy',hot)[0].w);});
 test('outlet aspect constraint filters all rectangular candidates',()=>{const r=E.outletOptions(2000/3600,1,2.5,.75,4);assert.ok(r.options.length>2);for(const x of r.options.filter(x=>x.shape==='rect'))assert.ok(x.w/x.h<=4+1e-9);assert.ok(E.outletOptions(2000/3600,1,2.5,.75,10).options.length>r.options.length);assert.throws(()=>E.outletOptions(1,1,2,.75,.9));});
+
+test('SI/US independent engineering conversion anchors',()=>{
+ near(12*E.units.US.dimension[1],.3048);
+ near(1000*E.units.US.flow[1],.4719474432);
+ near(1000*E.units.US.velocity[1],5.08);
+ near(10*E.units.US.area[1],.9290304);
+ near(E.units.US.pressure[1],8.172208333333334,1e-10);
+ for(const k of Object.keys(E.units.SI))for(const n of [.001,1,123.45,8000]){
+  const physical=n*E.units.SI[k][1];
+  near((physical/E.units.US[k][1])*E.units.US[k][1],physical,1e-8);
+ }
+});
+test('same physical duct and outlet inputs yield identical SI/US engineering results',()=>{
+ const roundtrip=(n,k)=>(n/E.units.US[k][1])*E.units.US[k][1];
+ const q=8000/3600,w=.6,h=.4;
+ const de=E.diameter(w,h,'friction');
+ const usDe=E.diameter(roundtrip(w,'dimension'),roundtrip(h,'dimension'),'friction');
+ near(usDe,de);near(roundtrip(q,'flow')/(roundtrip(w,'dimension')*roundtrip(h,'dimension')),q/(w*h));
+ near(E.pressure(roundtrip(q,'flow'),usDe,true).loss,E.pressure(q,de,true).loss);
+ const si=E.outletOptions(2000/3600,2,2.5,.75,4);
+ const us=E.outletOptions(roundtrip(2000/3600,'flow'),2,roundtrip(2.5,'velocity'),.75,4);
+ near(us.required.gross,si.required.gross);assert.deepEqual(us.options.map(x=>[x.shape,x.w,x.h]),si.options.map(x=>[x.shape,x.w,x.h]));
+});
+

@@ -1,13 +1,14 @@
-# Build status — 5.02
+# Build status — 5.3.0
 
-Verified build commit: b6a90070bb28b72b76c42a7465949a0f2db0056d
-GitHub Actions: https://github.com/siscomdiuehoa/Duct-checker/actions/runs/41316739469
-Result: SUCCESS for Android and iOS. 24 engine tests passed on CI.
+Owner-confirmed Android application ID: vn.ductchecker.pro.
+Current Play version: 5.2.0 / 50200. Prepared update: 5.3.0 / 50300.
+English and SI remain fresh-install defaults; existing saved preferences are preserved.
 
-Android: generated installable debug APK, unsigned release APK and unsigned AAB. aapt verified applicationId vn.ductchecker.pro, versionName 5.02, provisional versionCode 50200, targetSdk36/minSdk24. apksigner verified the debug APK certificate (Android Debug). Release AAB/APK are not signed and cannot be uploaded as updates yet.
+Previous release build: Android and iOS SUCCESS at b6a90070bb28b72b76c42a7465949a0f2db0056d.
+https://github.com/siscomdiuehoa/Duct-checker/actions/runs/41316739469
+The 5.3.0 build results will be recorded after CI completes.
 
-iOS: Xcode26.6 successfully archived for device and built for iOS Simulator. Downloaded and inspected both ZIPs: bundle ID vn.ductchecker.pro, version5.02/build50200, privacy manifest included, no _CodeSignature. These are not an installable iPhone IPA or a signed App Store submission.
+Google Play App Signing enabled; replacement upload key reset pending Google approval. This build remains unsigned. No store upload is authorized now.
+iOS remains unsigned until Apple Developer team/signing is configured; simulator testing can use the simulator app ZIP on macOS. Physical-device acceptance, TestFlight signing and store forms remain outstanding.
 
-Downloaded Android/iOS bundles were inspected: original logo matches byte-for-byte; engine source matches after line-ending normalization; English fresh-install fallback and new preference key are present. Real-device acceptance remains outstanding. Earlier macOS builds also succeeded; local Windows Gradle was blocked by a Java loopback socket issue, so CI produced the binaries.
-
-Outstanding owner information: original Android upload key, highest Play versionCode, Apple Developer team/signing. No store upload occurred. See STORE-RELEASE.md.
+Approved UI and calculation engine are preserved: duct selection/check/velocity sizing, area or equivalent-friction conversion, outlet candidates with free-area/aspect limits, air conditions, five languages, SI/US and About. Reference-only fabric material does not provide a verified friction calculation model. The shared release UI uses Capacitor; native-swiftui is an older prototype.

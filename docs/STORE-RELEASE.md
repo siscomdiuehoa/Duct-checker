@@ -1,10 +1,10 @@
-# Store release checklist — 5.02
+# Store release checklist — 5.3.0
 
 ## Android / existing Play listing
 
 Application ID must stay `vn.ductchecker.pro`.
-Confirm the highest versionCode in Play Console → Test and release → Latest releases and bundles / App bundle explorer; choose a strictly greater value. 50200 is only a build placeholder, not a verified update code.
-Locate the original upload keystore on the prior developer's machine/backups. Signing certificates downloadable from Play Console are not the private keystore. Do not generate an unrelated replacement key and attempt an update; use Google's upload-key reset procedure if appropriate.
+Owner confirmed current Play version **5.2.0 / 50200**, next release **5.3.0 / 50300**.
+Google Play App Signing is enabled. The old upload key is lost; a replacement RSA 4096-bit upload key (alias `ductchecker-upload`) has been created outside this repository and its public certificate submitted for reset. **Google approval is pending.** Do not sign/upload until the owner confirms approval and the accepted certificate is checked. Never commit the private keystore, passwords or signing secrets. Local key paths remain outside repository documentation.
 
 Build with JDK21/SDK36 and the signing environment variables described in README. Verify the AAB signature/certificate against Play Console before upload. Upload first to an internal test track; review pre-launch report, Data safety, content rating, target audience, ads declaration and screenshots. No upload is automated here.
 
@@ -17,7 +17,7 @@ The shared UI is hosted in Capacitor, not the earlier SwiftUI prototype. Verify 
 ## Draft listing / privacy
 
 Name: Duct Checker Pro
-Version: 5.02
+Version: 5.3.0
 Developer: Siscom Technical Trading Joint Stock Company
 Website: https://siscom.vn
 Suggested short description: Offline duct and air grille sizing for HVAC design.
