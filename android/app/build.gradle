@@ -7,7 +7,7 @@ android {
         applicationId "vn.ductchecker.pro"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode (project.findProperty("releaseVersionCode") ?: "50200").toInteger()
+        versionCode = (project.findProperty("releaseVersionCode") ?: "50200").toInteger()
         versionName "5.02"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
