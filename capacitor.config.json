@@ -1,0 +1,14 @@
+{
+  "appId": "vn.ductchecker.pro",
+  "appName": "Duct Checker Pro",
+  "webDir": "dist",
+  "ios": {
+    "contentInset": "automatic"
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "server": {
+    "androidScheme": "https"
+  }
+}

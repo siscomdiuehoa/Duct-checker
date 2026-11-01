@@ -1,0 +1,56 @@
+// !$*UTF8*$!
+{ archiveVersion = 1; classes = {}; objectVersion = 56; objects = {
+E3785987ADB1574119C54188 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/Components.swift"; sourceTree = "<group>"; };
+C1D7E50F593E246460BE7F50 = { isa = PBXBuildFile; fileRef = E3785987ADB1574119C54188; };
+3DFB5D48954DAA01C045245C = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/ConversionView.swift"; sourceTree = "<group>"; };
+9311B8414C0603E6F7954ACD = { isa = PBXBuildFile; fileRef = 3DFB5D48954DAA01C045245C; };
+287987EA47F8EE3EEF769524 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/DuctCheckerApp.swift"; sourceTree = "<group>"; };
+0FCD63D475242FDDB7B4B234 = { isa = PBXBuildFile; fileRef = 287987EA47F8EE3EEF769524; };
+A4760294B4C03897A0C4B9A0 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/DuctSizeView.swift"; sourceTree = "<group>"; };
+A0193CBD4278527A69656561 = { isa = PBXBuildFile; fileRef = A4760294B4C03897A0C4B9A0; };
+FC89C398383BAACF950D819D = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/SettingsView.swift"; sourceTree = "<group>"; };
+F5C165B662D47DF386FADD7D = { isa = PBXBuildFile; fileRef = FC89C398383BAACF950D819D; };
+156ED7C3F65765499F5F105F = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/TerminalView.swift"; sourceTree = "<group>"; };
+88DCC9B3DC14B1F99B7D3D09 = { isa = PBXBuildFile; fileRef = 156ED7C3F65765499F5F105F; };
+B78FC91EE7C0691208B73E76 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/DuctCore/DuctEngine.swift"; sourceTree = "<group>"; };
+CB6DBD999DED20A5442E4D45 = { isa = PBXBuildFile; fileRef = B78FC91EE7C0691208B73E76; };
+97AE3A8D0FBC8AF0022F9AD9 = { isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Sources/DuctCore/Units.swift"; sourceTree = "<group>"; };
+3993DDA3914028D09E0F741E = { isa = PBXBuildFile; fileRef = 97AE3A8D0FBC8AF0022F9AD9; };
+3685E330EC5277A9DD5661C6 = { isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = App/Assets.xcassets; sourceTree = "<group>"; };
+04200CFFD12D083534B07BB1 = { isa = PBXBuildFile; fileRef = 3685E330EC5277A9DD5661C6; };
+094B0FE0E302854AF1311AFA = { isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "en"; path = "App/Resources/en.lproj/Localizable.strings"; sourceTree = "<group>"; };
+833DA188871DDE4C49E08271 = { isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "vi"; path = "App/Resources/vi.lproj/Localizable.strings"; sourceTree = "<group>"; };
+E3F97143EC1DC6EBAE80C0F7 = { isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "App/Resources/zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+84572EF2253EF81E2D8CD8C6 = { isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ja"; path = "App/Resources/ja.lproj/Localizable.strings"; sourceTree = "<group>"; };
+FA6AF6E97D010A98B5BFB9DC = { isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "th"; path = "App/Resources/th.lproj/Localizable.strings"; sourceTree = "<group>"; };
+BFD903E8670902324963C591 = { isa = PBXVariantGroup; children = (094B0FE0E302854AF1311AFA,833DA188871DDE4C49E08271,E3F97143EC1DC6EBAE80C0F7,84572EF2253EF81E2D8CD8C6,FA6AF6E97D010A98B5BFB9DC,); name = Localizable.strings; sourceTree = "<group>"; };
+D0C1879122FD57C7F28989C5 = { isa = PBXBuildFile; fileRef = BFD903E8670902324963C591; };
+38A007151ABE87CC01A5B6E9 = { isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DuctCheckerPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+FBDC4F23F93125BBEEAE800C = { isa = PBXGroup; children = (38A007151ABE87CC01A5B6E9,); name = Products; sourceTree = "<group>"; };
+B28B7AF69320201D1CF206EB = { isa = PBXGroup; children = (E3785987ADB1574119C54188,3DFB5D48954DAA01C045245C,287987EA47F8EE3EEF769524,A4760294B4C03897A0C4B9A0,FC89C398383BAACF950D819D,156ED7C3F65765499F5F105F,B78FC91EE7C0691208B73E76,97AE3A8D0FBC8AF0022F9AD9,3685E330EC5277A9DD5661C6,BFD903E8670902324963C591,FBDC4F23F93125BBEEAE800C,); sourceTree = "<group>"; };
+BCE16DD0260827ECF338C787 = { isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (C1D7E50F593E246460BE7F50,9311B8414C0603E6F7954ACD,0FCD63D475242FDDB7B4B234,A0193CBD4278527A69656561,F5C165B662D47DF386FADD7D,88DCC9B3DC14B1F99B7D3D09,CB6DBD999DED20A5442E4D45,3993DDA3914028D09E0F741E,); runOnlyForDeploymentPostprocessing = 0; };
+0189424A5A60FED329FA868E = { isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (04200CFFD12D083534B07BB1,D0C1879122FD57C7F28989C5,); runOnlyForDeploymentPostprocessing = 0; };
+F178867DA2879CAE0F60630A = { isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+D08DD63EED508AD30D0CB0B4 = { isa = XCBuildConfiguration; name = Debug; buildSettings = { CLANG_ENABLE_MODULES = YES; SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SWIFT_VERSION = 5.0; }; };
+7082CC0B6FC1282FCEABD07A = { isa = XCBuildConfiguration; name = Debug; buildSettings = {
+        PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = vn.siscom.DuctCheckerPro;
+        GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "Duct Checker Pro";
+        INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+        INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        MARKETING_VERSION = 5.02; CURRENT_PROJECT_VERSION = 502; TARGETED_DEVICE_FAMILY = "1,2";
+        CODE_SIGN_STYLE = Automatic; SWIFT_EMIT_LOC_STRINGS = NO; SWIFT_OPTIMIZATION_LEVEL = "-Onone"; SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+    }; };
+811CB99F7A296F7846C18A7F = { isa = XCBuildConfiguration; name = Release; buildSettings = { CLANG_ENABLE_MODULES = YES; SDKROOT = iphoneos; IPHONEOS_DEPLOYMENT_TARGET = 17.0; SWIFT_VERSION = 5.0; }; };
+639A7CA24D39909E713B47F7 = { isa = XCBuildConfiguration; name = Release; buildSettings = {
+        PRODUCT_NAME = "$(TARGET_NAME)"; PRODUCT_BUNDLE_IDENTIFIER = vn.siscom.DuctCheckerPro;
+        GENERATE_INFOPLIST_FILE = YES; INFOPLIST_KEY_CFBundleDisplayName = "Duct Checker Pro";
+        INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+        INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+        MARKETING_VERSION = 5.02; CURRENT_PROJECT_VERSION = 502; TARGETED_DEVICE_FAMILY = "1,2";
+        CODE_SIGN_STYLE = Automatic; SWIFT_EMIT_LOC_STRINGS = NO; SWIFT_OPTIMIZATION_LEVEL = "-O";
+    }; };
+657E660766014DDDC9673A14 = { isa = XCConfigurationList; buildConfigurations = (D08DD63EED508AD30D0CB0B4,811CB99F7A296F7846C18A7F,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+651ECA092BE81738918D8CDB = { isa = XCConfigurationList; buildConfigurations = (7082CC0B6FC1282FCEABD07A,639A7CA24D39909E713B47F7,); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+0E8A3AD980EC179856012B7E = { isa = PBXNativeTarget; buildConfigurationList = 651ECA092BE81738918D8CDB; buildPhases = (BCE16DD0260827ECF338C787,F178867DA2879CAE0F60630A,0189424A5A60FED329FA868E,); buildRules = (); dependencies = (); name = DuctCheckerPro; productName = DuctCheckerPro; productReference = 38A007151ABE87CC01A5B6E9; productType = "com.apple.product-type.application"; };
+98F54143AB4E86B28C3AFEE0 = { isa = PBXProject; attributes = { LastUpgradeCheck = 1500; }; buildConfigurationList = 657E660766014DDDC9673A14; compatibilityVersion = "Xcode 14.0"; developmentRegion = en; hasScannedForEncodings = 0; knownRegions = (en,vi,"zh-Hans",ja,th,Base,); mainGroup = B28B7AF69320201D1CF206EB; productRefGroup = FBDC4F23F93125BBEEAE800C; projectDirPath = ""; projectRoot = ""; targets = (0E8A3AD980EC179856012B7E,); };
+}; rootObject = 98F54143AB4E86B28C3AFEE0; }

@@ -1,0 +1,15 @@
+name: Validate (no deployment)
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  engine-and-ios:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Engine unit tests
+        run: swift test
+      - name: Build iOS Simulator app without signing
+        run: >-
+          xcodebuild -project DuctCheckerPro.xcodeproj -scheme DuctCheckerPro
+          -configuration Debug -sdk iphonesimulator
+          -destination 'generic/platform=iOS Simulator'
+          CODE_SIGNING_ALLOWED=NO build

@@ -1,0 +1,12 @@
+[
+  {
+    "source": "[original-logo-location]\\Desktop\\Logo\\ductlogo.png",
+    "asset": "outputs\\DuctCheckerPro\\App\\Assets.xcassets\\DuctLogo.imageset\\ductlogo.png",
+    "sha256": "4bd1c7deea5766cc3c27302775b2bdb2f60d7e7bdb10a78c838effc7e83436c4"
+  },
+  {
+    "source": "[original-logo-location]\\Desktop\\Logo\\your soid PNG.png",
+    "asset": "outputs\\DuctCheckerPro\\App\\Assets.xcassets\\SiscomLogo.imageset\\your soid PNG.png",
+    "sha256": "e4c0c64d6ad16ae2d2aafecfafa2fa718e8d626c865dd5b5ed58b62eaecd0aa7"
+  }
+]
