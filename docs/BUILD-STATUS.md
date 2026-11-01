@@ -4,9 +4,13 @@ Owner-confirmed Android application ID: vn.ductchecker.pro.
 Current Play version: 5.2.0 / 50200. Prepared update: 5.3.0 / 50300.
 English and SI remain fresh-install defaults; existing saved preferences are preserved.
 
-Previous release build: Android and iOS SUCCESS at b6a90070bb28b72b76c42a7465949a0f2db0056d.
-https://github.com/siscomdiuehoa/Duct-checker/actions/runs/41316739469
-The 5.3.0 build results will be recorded after CI completes.
+Verified build commit: 4fcb88c044402382cc1cdb476a90278e6ab8726c.
+Android and iOS: **SUCCESS**. All 26 numerical/unit regression tests passed on CI.
+https://github.com/siscomdiuehoa/Duct-checker/actions/runs/41318120276
+
+Artifacts: Android debug APK, unsigned release APK/AAB; iOS unsigned device archive and Simulator app ZIP. iOS archive metadata verified: vn.ductchecker.pro, 5.3.0 / 50300, original logo and matching engine, English/SI defaults, privacy manifest included, no code signature. This is not an installable physical-iPhone IPA.
+
+Downloaded Android artifacts verified: original logo/engine match source, English/SI defaults, release artifacts unsigned. aapt verified the companion release APK metadata: applicationId vn.ductchecker.pro, versionName 5.3.0, versionCode 50300, minSdk24/targetSdk36. Local artifact SHA-256 records are supplied alongside the downloaded packages.
 
 Google Play App Signing enabled; replacement upload key reset pending Google approval. This build remains unsigned. No store upload is authorized now.
 iOS remains unsigned until Apple Developer team/signing is configured; simulator testing can use the simulator app ZIP on macOS. Physical-device acceptance, TestFlight signing and store forms remain outstanding.

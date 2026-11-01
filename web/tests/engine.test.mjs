@@ -50,4 +50,3 @@ test('same physical duct and outlet inputs yield identical SI/US engineering res
  const us=E.outletOptions(roundtrip(2000/3600,'flow'),2,roundtrip(2.5,'velocity'),.75,4);
  near(us.required.gross,si.required.gross);assert.deepEqual(us.options.map(x=>[x.shape,x.w,x.h]),si.options.map(x=>[x.shape,x.w,x.h]));
 });
-
