@@ -42,3 +42,5 @@ For iOS, set the owner's Apple Developer team, register the bundle ID, archive w
 Huebscher equivalent-friction diameter; Colebrook/Darcy–Weisbach straight-duct losses; configurable air properties and roughness; preliminary outlet face-area sizing with free-area ratio and aspect limits. This is not a complete duct-network, noise or throw solver. Calculations and supported input limits are documented in the app About screen.
 
 Original user-supplied app/company logos are preserved. Derived native icons are generated without redrawing. No original third-party executable, reverse-engineered binary dump, local toolchain, private key or account credential is included.
+
+Fabric duct Aivex: manufacturer reference https://fabricduct.net/. No product-specific roughness or performance values are verified in this app; fabric duct calculation remains unsupported.
