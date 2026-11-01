@@ -9,7 +9,7 @@ const keys={duct:'Duct Size',convert:'Convert',outlets:'Outlet sizing',settings:
 let stored={};try{stored=JSON.parse(localStorage.getItem('duct-checker-v502-preferences')||'{}')}catch{}
 const state={page:'duct',lang:translations[stored.lang]?stored.lang:'en',unit:stored.unit==='US'?'US':'SI',dark:!!stored.dark,material:0,series:'legacy',preset:'standard',terminalPreset:0,selectedOutlet:null,selectedDuct:null,mode:'select',checkshape:'rect',method:'area',direction:'forward',type:'diffuser',values:{q:1,w:.6,h:.4,d:.95,v:10,tq:.3,tv:2.5,count:4,ratio:.6,limit:1,aspect:4,rough:.00018,atmos:101.325,temp:20,rh:0,outletAspect:10}};
 const kinds={q:'flow',w:'dimension',h:'dimension',d:'dimension',v:'velocity',tq:'flow',tv:'velocity',count:'count',ratio:'ratio',limit:'pressure',aspect:'count',rough:'roughness',atmos:'atmos',temp:'temperature',rh:'ratio',outletAspect:'count'};
-const materials=[['Galvanized steel',.00018],['Concrete',.003],['Fiberglass',.0009],['Seamless pipe',.00003],['PVC',.00003],['Stainless steel',.00009],['Reference roughness 0.15 mm',.00015],['Fabric duct Aivex',null]];
+const materials=[['Galvanized steel',.00018],['Concrete',.003],['Fiberglass',.0009],['Seamless pipe',.00003],['PVC',.00003],['Stainless steel',.00009],['Reference roughness 0.15 mm',.00015]];
 const terminals=[['Custom',.6,2.5],['VHS',.75,2.5],['HS',.75,2],['OAG',.35,2],['EAG',.35,2.5],['RAG',.5,2],['SEG',.35,7],['Smoke',.8,9],['Door',.6,1]];
 const t=key=>translations[state.lang]?.[key]||translations.en[key]||key;
 const escape=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -59,11 +59,6 @@ function parseSetting(raw){const clean=raw.trim().replace(',','.');return /^-?(\
 function validField(key,x){if(!Number.isFinite(x))return false;if(key==='temp')return x>=-40&&x<=100;if(key==='rh')return x>=0&&x<=1;if(key==='rough')return x>=0;if(['aspect','outletAspect'].includes(key))return x>=1;return x>0&&(key!=='count'||Number.isInteger(x))&&(key!=='ratio'||x<=1);}
 function update(){
  if(!$('#result'))return;
- if(state.page==='duct'&&materials[state.material][1]===null){
-  if($('#candidates'))$('#candidates').innerHTML='';
-  $('#result').innerHTML=`<h2>Fabric duct Aivex</h2><p class="details">${t('Fabric calculation pending')}</p><a href="https://fabricduct.net/" target="_blank" rel="noopener noreferrer">${t('Manufacturer datasheet')}</a>`;
-  return;
- }
 
  const s=state.values;
  document.querySelectorAll('[data-field]').forEach(el=>{const key=el.dataset.field;const valid=validField(key,s[key]);el.setAttribute('aria-invalid',String(!valid));$('#'+key+'-error').textContent=valid?'':t(['rough','atmos','temp','rh','aspect','outletAspect'].includes(key)?'Invalid setting':key==='ratio'?'Ratio must be between 0 and 100%':key==='count'?'Enter a whole number':'Enter a positive number');});

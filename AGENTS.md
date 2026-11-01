@@ -4,7 +4,7 @@
 - Preserve the Android application ID vn.ductchecker.pro. Do not invent a replacement upload key or guess a production versionCode.
 - Keep English as the fresh-install default. Preserve the five languages and physical values during SI/US changes.
 - Use only original app/company logos. Preserve user-approved Neumorphic styling, blue #2563EB and fixed mode order.
-- Never add Fabric duct Aivex calculation coefficients without verified product-specific engineering data. Existing reference-only entries do not establish a supported friction model.
+- Fabric ducts are excluded from the material list at the owner’s request. Do not reintroduce them without a new request.
 - Keep computation in web/engine.js, separate from UI. Changes to formulas require meaningful numerical/constraint tests. UI-only changes need targeted browser checks, not broad test repetition.
 - Run npm run build and npx cap sync after shared UI changes before native builds. Never edit generated copies in native public asset folders.
 - native-swiftui/ is a preserved earlier prototype, not the current release target. Do not present it as synchronized with current features.
