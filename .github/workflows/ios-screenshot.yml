@@ -33,6 +33,18 @@ jobs:
           xcrun simctl launch "$DEVICE" vn.ductchecker.pro
           sleep 15
           xcrun simctl io "$DEVICE" screenshot screenshots/DuctCheckerPro-5.3.0-iOS.png
+          xcrun simctl terminate "$DEVICE" vn.ductchecker.pro
+          cp app/App.app/public/app.js app-original.js
+          # Screenshot harness only: choose the initial tab in the downloaded simulator copy.
+          # Repository UI and release artifacts are untouched.
+          for PAGE in outlets settings; do
+            python3 -c "from pathlib import Path; p=Path('app/App.app/public/app.js'); s=Path('app-original.js').read_text(); assert \"page:'duct'\" in s; p.write_text(s.replace(\"page:'duct'\", \"page:'$PAGE'\", 1))"
+            xcrun simctl install "$DEVICE" app/App.app
+            xcrun simctl launch "$DEVICE" vn.ductchecker.pro
+            sleep 8
+            xcrun simctl io "$DEVICE" screenshot "screenshots/DuctCheckerPro-5.3.0-iOS-$PAGE.png"
+            xcrun simctl terminate "$DEVICE" vn.ductchecker.pro
+          done
           xcrun simctl list devices booted > screenshots/device.txt
       - uses: actions/upload-artifact@v4
         with:
