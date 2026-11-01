@@ -95,6 +95,15 @@ function update(){
  }
  }catch(e){$('#result').innerHTML=`<div class="result-label">${t('Results')}</div><p class="error">${escape(t(e.message))}</p><p class="result-caption">${t('Enter valid values to calculate.')}</p>`;if($('#comparison'))$('#comparison').innerHTML='';if($('#candidates'))$('#candidates').innerHTML='';}
 }
+// Keep swipeable choices aligned with the live properties panel.
+let candidatePanelObserver;
+function syncCandidatePanel(){
+ candidatePanelObserver?.disconnect();
+ const result=$('#result'),list=$('#candidates .candidate-list');
+ if(!result||!list)return;
+ const resize=()=>{list.style.height=`${result.getBoundingClientRect().height}px`;};
+ resize();candidatePanelObserver=new ResizeObserver(resize);candidatePanelObserver.observe(result);
+}
 function renderSelection(){
  const s=state.values,options=E.designSelection(s.q,s.v,s.limit,s.aspect,s.rough,state.series,airModel());
  const selected=options.find(r=>r.id===state.selectedDuct)||options.find(r=>r.kind==='Nominal diameter')||options[0];state.selectedDuct=selected?.id||null;
@@ -106,7 +115,7 @@ function renderSelection(){
  document.querySelectorAll('[data-option]').forEach(b=>{const active=b.dataset.option===selected.id;b.classList.toggle('chosen',active);b.setAttribute('aria-pressed',String(active));});
  $('#result').innerHTML=`<div class="result-label">${t('Selected duct')}</div><h2 class="selected-size">${label(selected)}</h2><p class="${selected.pass?'pass-note':'error'}">${t(selected.pass?'Within entered limits':'Exceeds limit')}</p><dl>${row('Air velocity',display(selected.v,'velocity'))+row('Friction loss',display(selected.loss,'pressure'))+row('Cross-sectional area',display(selected.a,'area'))+row('Aspect ratio',num(selected.aspect,2))+row('Air density',`${num(airModel().rho,4)} <small>kg/m³</small>`)+row('Dynamic pressure',`${num(.5*airModel().rho*selected.v**2)} <small>Pa</small>`)+row('Equal-friction diameter',display(selected.de,'dimension'))+row('Equivalent velocity',display(s.q/E.roundArea(selected.de),'velocity'))}</dl>`;
  }
- showOption(selected);
+ showOption(selected);syncCandidatePanel();
  document.querySelectorAll('[data-option]').forEach(b=>{const show=()=>showOption(options.find(r=>r.id===b.dataset.option));b.onmouseenter=show;b.onfocus=show;b.onclick=show;});
 }
 function renderOutletSelection(){
@@ -117,7 +126,7 @@ function renderOutletSelection(){
  function show(r){state.selectedOutlet=r.id;document.querySelectorAll('[data-outlet]').forEach(b=>{const active=b.dataset.outlet===r.id;b.classList.toggle('chosen',active);b.setAttribute('aria-pressed',String(active));});
  $('#result').innerHTML=`<div class="result-label">${t('Selected outlet')}</div><h2 class="selected-size">${label(r)}</h2><p class="result-caption">${t('Per outlet')}</p><dl>${row('Airflow per outlet',display(r.per,'flow'))+row('Free-area ratio',display(s.ratio,'ratio'))+row('Actual free-area velocity',display(r.velocity,'velocity'))+row('Selected face area',display(r.gross,'area'))+row('Free area per outlet',display(r.free,'area'))+row('Required face area',display(required.gross,'area'))+row('Capacity at target velocity',display(r.capacity,'flow'))}</dl>`;
  }
- show(options.find(r=>r.id===state.selectedOutlet)||options[0]);
+ show(options.find(r=>r.id===state.selectedOutlet)||options[0]);syncCandidatePanel();
  document.querySelectorAll('[data-outlet]').forEach(b=>{const showRow=()=>show(options.find(r=>r.id===b.dataset.outlet));b.onmouseenter=showRow;b.onfocus=showRow;b.onclick=showRow;});
 }
 function bind(){
