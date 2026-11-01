@@ -51,4 +51,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: DuctCheckerPro-5.02-iOS-unsigned
-          path: artifacts/ios/*
+          path: artifacts/ios/*.zip
