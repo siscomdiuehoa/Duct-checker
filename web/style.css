@@ -46,3 +46,10 @@ body.native-app .reviewbar,body.native-app .outside-note{display:none}body.nativ
 .flow-options .candidate-list{max-height:none;height:385px;border:0;border-radius:22px;padding:24px;background:var(--panel);box-shadow:7px 7px 15px var(--shadow),-7px -7px 15px var(--light);overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch}
 .flow-options .candidate-list::-webkit-scrollbar{display:none;width:0;height:0}
 @media(max-width:700px){.flow-selection-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.flow-options .candidate-list{border-radius:16px;padding:14px 11px}}
+
+/* Reserve the same 35px heading space above both paired cards. */
+@media(max-width:700px){
+ .flow-options .candidate-heading{height:35px;min-height:35px;margin:0;padding-bottom:13px;align-items:center}
+ .flow-options .candidate-heading h2{margin:0}
+ .selected-properties{padding-top:35px}
+}
