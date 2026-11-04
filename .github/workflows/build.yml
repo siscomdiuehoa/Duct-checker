@@ -50,8 +50,10 @@ jobs:
           xcode-version: latest-stable
       - run: xcodebuild -version
       - run: npm ci && npm run build && npx cap sync ios
+        env:
+          DUCT_IOS_RELEASE: "1"
       - run: bash scripts/build-ios.sh
       - uses: actions/upload-artifact@v4
         with:
-          name: DuctCheckerPro-5.3.0-iOS-unsigned
+          name: DuctCheckerPro-5.2.0-iOS-unsigned
           path: artifacts/ios/*.zip
