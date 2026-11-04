@@ -17,3 +17,6 @@ ios/App/DerivedData/
 .DS_Store
 *.xcuserstate
 xcuserdata/
+*.p8
+*.key
+*.provisionprofile
