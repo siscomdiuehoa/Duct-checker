@@ -1,11 +1,16 @@
 name: Capture iOS Simulator
 on:
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Build mobile review packages"]
+    types: [completed]
+    branches: [main]
 permissions:
   contents: read
   actions: read
 jobs:
   screenshot:
+    if: github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success'
     runs-on: macos-latest
     timeout-minutes: 15
     steps:
@@ -15,7 +20,7 @@ jobs:
       - uses: actions/download-artifact@v4
         with:
           name: DuctCheckerPro-5.2.0-iOS-unsigned
-          run-id: 41863744881
+          run-id: ${{ github.event.workflow_run.id || '41863744881' }}
           github-token: ${{ github.token }}
           path: packages
       - name: Launch actual iOS app and capture
