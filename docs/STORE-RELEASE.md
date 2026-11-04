@@ -10,7 +10,7 @@ Build with JDK21/SDK36 and the signing environment variables described in README
 
 ## iOS / first release
 
-Create the app record with bundle ID vn.ductchecker.pro if available. Use Xcode26+ / iOS26 SDK or later for App Store Connect requirements. Select the owner's team and let Xcode manage signing, or supply the owner's distribution certificate/profile locally. The CI archive is intentionally unsigned. Organizer → Distribute App → App Store Connect creates the signed package/upload only after the owner authorizes distribution.
+Use bundle ID vn.siscom.ductcheckerpro; owner reports registration under Team 7N8G738TDU. Verify app record/history before creating or uploading anything. Use Xcode26+ / iOS26 SDK or later for App Store Connect requirements. Select the owner's team and let Xcode manage signing, or supply the owner's distribution certificate/profile locally. The CI archive is intentionally unsigned. Organizer → Distribute App → App Store Connect creates the signed package/upload only after the owner authorizes distribution.
 
 The shared UI is hosted in Capacitor, not the earlier SwiftUI prototype. Verify all calculations, keyboard, safe areas, offline startup, external links, light/dark, all languages, SI/US and VoiceOver on a real iPhone and Android device before submitting for review. Approval is determined by the stores, not by successful compilation.
 

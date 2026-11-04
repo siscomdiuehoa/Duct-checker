@@ -3,7 +3,7 @@
 Siscom Technical Trading Joint Stock Company — https://siscom.vn
 
 Android application ID: **vn.ductchecker.pro** (existing Google Play app).
-iOS bundle identifier: **vn.siscom.ductcheckerpro** (registration and app history pending owner confirmation).
+iOS bundle identifier: **vn.siscom.ductcheckerpro** (owner reports registration complete under Team 7N8G738TDU; app record/history remains to be checked).
 
 The current release candidate shares the approved Neumorphic UI and calculation engine through Capacitor 8.6.0. **English is the first-launch default**; Vietnamese, Chinese, Japanese and Thai remain selectable. SI is the default unit system. Calculations run offline. Changing a preference is retained on the device.
 
