@@ -14,8 +14,8 @@ jobs:
           xcode-version: latest-stable
       - uses: actions/download-artifact@v4
         with:
-          name: DuctCheckerPro-5.3.0-iOS-unsigned
-          run-id: 41861128144
+          name: DuctCheckerPro-5.2.0-iOS-unsigned
+          run-id: 41863744881
           github-token: ${{ github.token }}
           path: packages
       - name: Launch actual iOS app and capture
@@ -23,30 +23,38 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p screenshots app
-          ditto -x -k packages/DuctCheckerPro-5.3.0-simulator.app.zip app
+          ditto -x -k packages/DuctCheckerPro-5.2.0-simulator.app.zip app
           xcrun simctl list devices available -j > devices.json
           DEVICE=$(python3 -c 'import json;d=json.load(open("devices.json"));print(next(x["udid"] for v in reversed(list(d["devices"].values())) for x in v if "iPhone 17 Pro Max" in x["name"] and x.get("isAvailable")))')
           xcrun simctl boot "$DEVICE"
           xcrun simctl bootstatus "$DEVICE" -b
           xcrun simctl status_bar "$DEVICE" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
-          xcrun simctl install "$DEVICE" app/App.app
-          xcrun simctl launch "$DEVICE" vn.siscom.ductcheckerpro
-          sleep 15
-          xcrun simctl io "$DEVICE" screenshot screenshots/DuctCheckerPro-5.3.0-iOS.png
-          xcrun simctl terminate "$DEVICE" vn.siscom.ductcheckerpro
           cp app/App.app/public/app.js app-original.js
-          # Screenshot harness only: choose the initial tab in the downloaded simulator copy.
-          # Repository UI and release artifacts are untouched.
-          for PAGE in outlets settings; do
-            python3 -c "from pathlib import Path; p=Path('app/App.app/public/app.js'); s=Path('app-original.js').read_text(); assert \"page:'duct'\" in s; p.write_text(s.replace(\"page:'duct'\", \"page:'$PAGE'\", 1))"
+          # Simulator-only launch states; the shipped app source is untouched.
+          for SCREEN in main rectangular round velocity units settings; do
+            SCREEN="$SCREEN" python3 - <<'PY'
+          import os
+          from pathlib import Path
+          s=Path('app-original.js').read_text();screen=os.environ['SCREEN']
+          def change(a,b):
+              global s
+              assert a in s, a
+              s=s.replace(a,b,1)
+          if screen in ('rectangular','round'):change("mode:'select'","mode:'check'")
+          if screen=='round':change("checkshape:'rect'","checkshape:'round'")
+          if screen=='velocity':change("mode:'select'","mode:'size'")
+          if screen=='units':change("unit:stored.unit==='US'?'US':'SI'","unit:'US'")
+          if screen=='settings':change("page:'duct'","page:'settings'")
+          Path('app/App.app/public/app.js').write_text(s)
+          PY
             xcrun simctl install "$DEVICE" app/App.app
             xcrun simctl launch "$DEVICE" vn.siscom.ductcheckerpro
-            sleep 8
-            xcrun simctl io "$DEVICE" screenshot "screenshots/DuctCheckerPro-5.3.0-iOS-$PAGE.png"
+            sleep 12
+            xcrun simctl io "$DEVICE" screenshot "screenshots/$SCREEN.png"
             xcrun simctl terminate "$DEVICE" vn.siscom.ductcheckerpro
           done
           xcrun simctl list devices booted > screenshots/device.txt
       - uses: actions/upload-artifact@v4
         with:
-          name: DuctCheckerPro-5.3.0-iOS-screenshot
+          name: DuctCheckerPro-5.2.0-iOS-screenshots
           path: screenshots/
