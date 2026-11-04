@@ -31,7 +31,7 @@ jobs:
           xcrun simctl status_bar "$DEVICE" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
           cp app/App.app/public/app.js app-original.js
           # Simulator-only launch states; the shipped app source is untouched.
-          for SCREEN in main rectangular round velocity units settings; do
+          for SCREEN in main rectangular round velocity units settings about; do
             SCREEN="$SCREEN" python3 - <<'PY'
           import os
           from pathlib import Path
@@ -44,7 +44,7 @@ jobs:
           if screen=='round':change("checkshape:'rect'","checkshape:'round'")
           if screen=='velocity':change("mode:'select'","mode:'size'")
           if screen=='units':change("unit:stored.unit==='US'?'US':'SI'","unit:'US'")
-          if screen=='settings':change("page:'duct'","page:'settings'")
+          if screen in ('settings','about'):change("page:'duct'","page:'"+screen+"'")
           Path('app/App.app/public/app.js').write_text(s)
           PY
             xcrun simctl install "$DEVICE" app/App.app
