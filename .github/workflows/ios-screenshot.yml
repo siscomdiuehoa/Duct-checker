@@ -30,7 +30,7 @@ jobs:
           mkdir -p screenshots app
           ditto -x -k packages/DuctCheckerPro-5.2.0-simulator.app.zip app
           xcrun simctl list devices available -j > devices.json
-          DEVICE=$(python3 -c 'import json;d=json.load(open("devices.json"));print(next(x["udid"] for v in reversed(list(d["devices"].values())) for x in v if "iPhone 17 Pro Max" in x["name"] and x.get("isAvailable")))')
+          DEVICE=$(python3 -c 'import json;d=json.load(open("devices.json"));print(next(x["udid"] for v in reversed(list(d["devices"].values())) for x in v if "iPhone 17 Pro" in x["name"] and x.get("isAvailable")))')
           xcrun simctl boot "$DEVICE"
           xcrun simctl bootstatus "$DEVICE" -b
           xcrun simctl status_bar "$DEVICE" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
