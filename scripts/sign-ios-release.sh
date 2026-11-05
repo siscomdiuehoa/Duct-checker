@@ -50,7 +50,7 @@ apps=("$tmp/unpacked/Payload/"*.app)
 [[ ${#apps[@]} == 1 ]]
 app="${apps[0]}"
 codesign --verify --deep --strict "$app"
-codesign -d --extract-certificates "$tmp/signer" "$app"
+codesign -d --extract-certificates="$tmp/signer" "$app"
 codesign -d --entitlements :- "$app" > "$tmp/entitlements.plist"
 security cms -D -i "$app/embedded.mobileprovision" > "$tmp/embedded.plist"
 [[ "$(python3 scripts/verify-ios-export.py profile "$tmp/embedded.plist")" == "$uuid" ]]
