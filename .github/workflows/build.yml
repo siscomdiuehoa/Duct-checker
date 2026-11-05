@@ -57,3 +57,42 @@ jobs:
         with:
           name: DuctCheckerPro-5.2.0-iOS-unsigned
           path: artifacts/ios/*.zip
+
+  upload_ios_review:
+    if: github.repository == 'siscomdiuehoa/Duct-checker' && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/review/ios-upload-520'
+    environment: ios-upload
+    runs-on: macos-latest
+    timeout-minutes: 20
+    steps:
+      - name: Download verified signed IPA
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: DuctCheckerPro-iOS-5.2.0-50300-signed
+          run-id: 42050264234
+          github-token: ${{ github.token }}
+          path: signed
+      - name: Verify and upload to App Store Connect
+        env:
+          ASC_KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ASC_ISSUER_ID: ${{ secrets.ASC_ISSUER_ID }}
+          ASC_PRIVATE_KEY_BASE64: ${{ secrets.ASC_PRIVATE_KEY_BASE64 }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          set +x
+          umask 077
+          : "${ASC_KEY_ID:?Missing ASC key ID}" "${ASC_ISSUER_ID:?Missing ASC issuer ID}" "${ASC_PRIVATE_KEY_BASE64:?Missing ASC API key}"
+          [[ "$ASC_KEY_ID" =~ ^[A-Z0-9]{10}$ ]]
+          ipa="signed/DuctCheckerPro-5.2.0.ipa"
+          echo "d48c5e0d5619f973657b26f6be73316953cb258af301099ab4bef073e7d30a05  $ipa" | shasum -a 256 -c -
+          tmp=$(mktemp -d "$RUNNER_TEMP/asc-upload.XXXXXXXX")
+          trap 'rm -rf "$tmp"' EXIT
+          ditto -x -k "$ipa" "$tmp/unpacked"
+          apps=("$tmp/unpacked/Payload/"*.app)
+          [[ ${#apps[@]} == 1 && -d "${apps[0]}" ]]
+          codesign --verify --deep --strict "${apps[0]}"
+          export API_PRIVATE_KEYS_DIR="$tmp/keys"
+          mkdir -p "$API_PRIVATE_KEYS_DIR"
+          printf '%s' "$ASC_PRIVATE_KEY_BASE64" | base64 -D > "$API_PRIVATE_KEYS_DIR/AuthKey_$ASC_KEY_ID.p8"
+          unset ASC_PRIVATE_KEY_BASE64
+          xcrun altool --upload-app --type ios --file "$ipa" --apiKey "$ASC_KEY_ID" --apiIssuer "$ASC_ISSUER_ID"
