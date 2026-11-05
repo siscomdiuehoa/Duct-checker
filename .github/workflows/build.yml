@@ -61,7 +61,7 @@ jobs:
 
   upload_ios_review:
     if: github.repository == 'siscomdiuehoa/Duct-checker' && github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/review/ios-upload-520'
-    environment: ios-upload
+    environment: ios-release
     runs-on: macos-latest
     timeout-minutes: 20
     steps:
